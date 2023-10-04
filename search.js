@@ -1,36 +1,25 @@
-// Function to highlight matching text within products based on a search term
+// Function to highlight matching list items within products based on a search term
 function highlightMatchingText(product, searchTerm) {
-	const productTitle = product.querySelector('.info h2');
 	const productVariants = product.querySelector('.variants');
+	const listItems = productVariants.querySelectorAll('li');
 
-	// Remove previous highlighting
-	const highlightedText = product.querySelectorAll('.highlighted-text');
-	highlightedText.forEach((span) => {
-		const text = document.createTextNode(span.textContent);
-		span.parentNode.replaceChild(text, span);
-	});
-
-	// Helper function to create a span element for highlighting
-	function createHighlightSpan(match) {
-		const span = document.createElement('span');
-		span.classList.add('highlighted-text');
-		span.textContent = match;
-		return span;
-	}
-
-	// Highlight matching text in variants
-	const variantsText = productVariants.textContent;
-	const variantsMatch = variantsText.toLowerCase().indexOf(searchTerm.toLowerCase());
-	if (variantsMatch !== -1) {
-		const matchedText = variantsText.substr(variantsMatch, searchTerm.length);
-		const span = createHighlightSpan(matchedText);
-		const beforeText = variantsText.substr(0, variantsMatch);
-		const afterText = variantsText.substr(variantsMatch + searchTerm.length);
-		productVariants.innerHTML = beforeText;
-		productVariants.appendChild(span);
-		productVariants.innerHTML += afterText;
+	if (searchTerm === '') {
+		listItems.forEach((listItem) => {
+			listItem.classList.remove('highlighted-text');
+		});
+	} else {
+		listItems.forEach((listItem) => {
+			const listItemText = listItem.textContent.toLowerCase();
+			if (listItemText.includes(searchTerm.toLowerCase())) {
+				listItem.classList.add('highlighted-text');
+			} else {
+				listItem.classList.remove('highlighted-text');
+			}
+		});
 	}
 }
+
+// Rest of the code remains the same
 
 // Function to handle search input changes
 function handleSearchInput() {
@@ -40,13 +29,6 @@ function handleSearchInput() {
 
 	products.forEach((product) => {
 		highlightMatchingText(product, searchTerm);
-
-		// Show or hide the product based on whether it contains highlighted text
-		if (product.querySelector('.highlighted-text')) {
-			product.style.display = ''; // Display the product
-		} else {
-			product.style.display = 'none'; // Hide the product
-		}
 	});
 }
 

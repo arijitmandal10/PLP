@@ -42,6 +42,7 @@ a:active {
 }
 .header {
 	display: flex;
+	padding: 12px;
 	flex-direction: column;
 	align-items: center;
 	margin: 15px;
@@ -49,12 +50,15 @@ a:active {
 .header button {
 	background: none;
 	/* border: none; */
-	padding: 6px 26px;
+	padding: 5px 12px;
 	border: 1px solid #ff00004d;
 }
 .header button:active {
 	background: rgb(0, 200, 37);
 	border: none;
+}
+.header input {
+	padding: 5px;
 }
 .grid-view {
 	display: flex;
@@ -74,6 +78,10 @@ a:active {
 	text-align: center;
 }
 .variants {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	width: 96%;
 	list-style: none;
 	padding: 0;
 }
@@ -101,7 +109,7 @@ a:active {
 }
 /* Add this CSS to style highlighted text */
 .highlighted-text {
-	background-color: yellow;
+	background-color: rgba(9, 255, 0, 0.737);
 	color: black;
 }
 
