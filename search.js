@@ -19,8 +19,6 @@ function highlightMatchingText(product, searchTerm) {
 	}
 }
 
-// Rest of the code remains the same
-
 // Function to handle search input changes
 function handleSearchInput() {
 	const searchInput = document.getElementById('searchInput');
